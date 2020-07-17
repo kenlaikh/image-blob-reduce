@@ -24,7 +24,7 @@ ImageBlobReduce.prototype.init = function () {
 
 
 ImageBlobReduce.prototype.toBlob = function (blob, options) {
-  var opts = utils.assign({ max: Infinity }, options);
+  var opts = utils.assign({ maxWidth: Infinity, maxHeight: Infinity }, options);
   var env = {
     blob: blob,
     opts: opts
@@ -49,7 +49,7 @@ ImageBlobReduce.prototype.to_blob = ImageBlobReduce.prototype.toBlob;
 
 
 ImageBlobReduce.prototype.toCanvas = function (blob, options) {
-  var opts = utils.assign({ max: Infinity }, options);
+  var opts = utils.assign({ maxWidth: Infinity, maxHeight: Infinity }, options);
   var env = {
     blob: blob,
     opts: opts
@@ -121,7 +121,7 @@ ImageBlobReduce.prototype._blob_to_image = function (env) {
 
 
 ImageBlobReduce.prototype._transform = function (env) {
-  var scale_factor = env.opts.max / Math.max(env.image.width, env.image.height);
+  var scale_factor = Math.min(env.opts.maxWidth / env.image.width, env.opts.maxHeight / env.image.height);
 
   if (scale_factor > 1) scale_factor = 1;
 

@@ -36,7 +36,7 @@ const reduce = require('image-blob-reduce')();
 //...
 
 reduce
-  .toBlob(image_blob, { max: 1000 })
+  .toBlob(image_blob, { maxWidth: 1000, maxHeight: 1000 })
   .then(blob => { ... });
 ```
 
@@ -56,13 +56,14 @@ Short call: `require('image_blob_reduce')()`
 
 ### .toBlob(in_blob, options) => Promise(out_blob)
 
-Downscale image to fit into `max`\*`max` size. If blob contains jpeg, then
+Downscale image to fit into `maxWidth`\*`maxHeight` size. If blob contains jpeg, then
 orientation is applied and metadata from original image reused (with minimal
 change).
 
 Options:
 
-- __max__ - max allowed image size.
+- __maxWidth__ - max allowed image width.
+- __maxHeight__ - max allowed image height.
 - __pica `.resize()` options__ - `alpha`, `unsharpAmount`, `unsharpRadius`,
   `unsharpThreshold`, `cancelToken`
 
